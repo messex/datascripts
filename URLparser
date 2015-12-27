@@ -1,0 +1,38 @@
+# Define Primary Variable
+link ='http://www.sage.com/ca/accountant/sage-match?source=D-0313-0009&utm_campaign=SageImpact&utm_source=CrispMedia&utm_content=SageImpact_SageMatch-Accessible_EN_300x50&utm_medium=MobileBanner'
+
+# Import Slicing Tools
+from urllib.parse import urlparse
+qu = urlparse(link).query
+link_split =qu.split('&')
+
+#Build dictionary of ocmponent parts from URL
+component_dict = dict(part.split("=") for part in link_split)
+
+#Build Variables
+utm_medium = component_dict.get("utm_medium")
+utm_campaign = component_dict.get("utm_campaign")
+utm_source = component_dict.get("utm_source")
+utm_content = component_dict.get("utm_content")
+content = utm_content.split('_')
+campaign= content[0]
+subcampaign_creative = content[1]
+language = content[2]
+size = content[3]
+site =utm_source
+FormFactor = utm_medium
+
+if subcampaign_creative.find('-') == -1:
+    subcampaign = 'No SubCampaign Found'
+    creative =subcampaign_creative
+else:
+    subcampaign, creative = subcampaign_creative.split('-')
+	
+# Test Variables
+print(campaign)
+print(language)
+print(size)
+print(subcampaign)
+print(creative)
+print(site)
+print(FormFactor)
