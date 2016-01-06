@@ -3,10 +3,11 @@ link ='http://www.sage.com/ca/accountant/sage-match?source=D-0313-0009&utm_campa
 
 # Import Slicing Tools
 from urllib.parse import urlparse
+
+
+#Build dictionary of component parts from URL
 qu = urlparse(link).query
 link_split =qu.split('&')
-
-#Build dictionary of ocmponent parts from URL
 component_dict = dict(part.split("=") for part in link_split)
 
 #Build Variables
